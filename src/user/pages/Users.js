@@ -20,7 +20,7 @@ const Users = () => {
         const response = await sendRequest(
           'http://localhost:4000/api/user/'
         );
-        console.log(response);
+
         setUsers([...response]);
       } catch (err) {
       }

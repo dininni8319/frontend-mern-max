@@ -5,8 +5,6 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal'
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner'
 
-export const DUMMY_PLACES = [];
-
 const UserPlaces = () => {
   const [ loadedPlaces, setLoadedPlaces ] = useState();
   const {
@@ -26,6 +24,10 @@ const UserPlaces = () => {
     fetchPlaces()
   }, [sendRequest])
   
+  const placeDeletedHandler = deletedPlaceId => {
+    setLoadedPlaces(prevPlaces => prevPlaces.filter(place => place.id !== deletedPlaceId))
+  };
+
   return (
     <>
        <ErrorModal error={error} onClear={clearError} />
@@ -36,7 +38,7 @@ const UserPlaces = () => {
            </div>
          )
        }
-      {!loading && loadedPlaces && <PlaceList items={loadedPlaces} />}
+      {!loading && loadedPlaces && <PlaceList items={loadedPlaces} onDeletePlace={placeDeletedHandler} />}
     </>
 
   )

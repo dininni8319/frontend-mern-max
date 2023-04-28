@@ -15,7 +15,6 @@ const UsersList = (props) => {
     )
   }
 
-  console.log(props.items, 'testing the items');
   return <ul>
     {props.items.map(user => 
       (<UserItem 
