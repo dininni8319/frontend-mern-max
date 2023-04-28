@@ -22,17 +22,24 @@ export const useHttpClient = () => {
         });
         
         const responseData = await response.json();
+        
+        // we wanna clear the controller for the request just been completed;
+        activeHttpRequests.current = activeHttpRequests.current.filter(
+          reqCtrl => reqCtrl !== httpAbortCtrl
+        );
             
         if (!response.ok) {
           throw new Error(responseData.message);
         };
-
+        
+        setLoading(false);
         return responseData;
       } catch (err) {
         setError(err.message);
+        setLoading(false);
+        
+        throw err;
       }
-
-      setLoading(false);
   },[]);
 
   const clearError = () => {

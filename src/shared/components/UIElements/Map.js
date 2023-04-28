@@ -22,7 +22,7 @@ const Map = props => {
     map.fitBounds(bounds);
 
     setMap(map)
-  }, []);
+  }, [center]);
 
   const onUnmount = useCallback(function callback(map) {
     setMap(null)

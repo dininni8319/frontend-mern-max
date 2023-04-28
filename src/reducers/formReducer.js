@@ -1,4 +1,3 @@
-import React from 'react';
 
 export const formReducer = (state, action) => {
   switch (action.type) {

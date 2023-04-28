@@ -1,4 +1,3 @@
-import React from 'react';
 import { validate } from "../shared/util/validators";
 
 export const inputReducer = (state, action) => {

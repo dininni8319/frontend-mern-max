@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
 import './Input.css';
-
 import { inputReducer } from '../../../reducers/inputReducer';
 
 const Input = props => {
@@ -14,11 +13,11 @@ const Input = props => {
   const [ inputState, dispatch ] = useReducer(inputReducer, initialState);
 
   const { id, onInput } = props;
-  const { value, isValid } = inputState;
+  // const { value, isValid } = inputState;
 
   useEffect(() => {
-    props.onInput(props.id, inputState.value, inputState.isValid)
-  }, [id, value, onInput, isValid]);
+    onInput(id, inputState.value, inputState.isValid)
+  }, [id, onInput, inputState.value, inputState.isValid]);
 
   const changeHandler = event => {
     dispatch(
