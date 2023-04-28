@@ -6,7 +6,7 @@ import ErrorModal from '../../shared/components/UIElements/ErrorModal'
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner'
 
 const UserPlaces = () => {
-  const [ loadedPlaces, setLoadedPlaces ] = useState();
+  const [ loadedPlaces, setLoadedPlaces ] = useState([]);
   const {
     loading,
     error,
@@ -18,9 +18,14 @@ const UserPlaces = () => {
 
   useEffect(() => {
     const fetchPlaces = async () => {
-      const responseData = await sendRequest(`http://localhost:4000/api/places/user/${userId}`);
-      setLoadedPlaces(responseData.places)
+      try {
+        const responseData = await sendRequest(`http://localhost:4000/api/places/user/${userId}`);
+        setLoadedPlaces(responseData.places)
+        
+      } catch (error) { 
+      }
     }
+    
     fetchPlaces()
   }, [sendRequest])
   
