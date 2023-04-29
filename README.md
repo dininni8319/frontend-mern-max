@@ -1,7 +1,5 @@
 <h1>Project Title: <strong>Places</strong> ---> Frontend</h1>
 
-<h4>Salvatore Dininni</h4>
-
 <h3>Packages:</h3>
 <ul>
   <li>
@@ -13,8 +11,35 @@
     <span>npm install --save react-transition-group</span>
   </li>
 </ul>
+<br/>
+<br/>
+<br/>
+<h2>Full-Stack Developer ___ <span>Salvatore Dininni</span></h2>
 
-<b>linkedIn Profile: <a href="https://www.linkedin.com/in/salvatoredininni/" >https://www.linkedin.com/in/salvatoredininni/ </a></b>
+<h4>Something about Me<h4>
+<p>A Highly Motivated Individual, open to new challenges and quickly learns new technologies. Self-driven, dedicated, and hard-working. Passionate about Web Development, Web Design, and Web Technologies.</p>
+<br/>
+<p>
+Attended remote HackJS course, based in Bari, Italy. Topics learned during the part-time course: Advanced Javascript, TDD, Type Coercion, React framework, React Native, Strapi. As a final project, i implemented Rehacktor, a Game Streaming application.
+</p>
+<br/>
+<p>
+Attended remote Hackademy course, based in Bari, Italy. The technology involved were HTML5, CSS3, Bootstrap5, PHP, JS, Laravel, Vue, React, and React Native. As a final project, I implemented Presto, an E-commerce announcement application.
+</p>
+<br/>
+<p>
+Completed Full-Stack Bootcamp with Propulsion Academy based in Zurich, Switzerland. Learned HTML5, CSS3, SCSS, JavaScript, React, Redux, Python, Django, PostgresSQL, REST Framework, Docker, GitLab, Git, NPM, Node, and Web Deployment. As a final project, I developed a Student Tracker, where professors of the course can keep track of student progress and grades. 
+</p>
+<br/>
+<p>
+Spoken languages: Italian, English, German.</p>
+<br/>
+<p>
+I will share GitLab and Github accounts upon request.</p>
+<br/>
+<br/>
+<strong>More details...<strong>
+<b>LinkedIn Profile: <a href="https://www.linkedin.com/in/salvatoredininni/" >https://www.linkedin.com/in/salvatoredininni/ </a></b>
 
 <h2><b>Portfolio Website:</b></h2> <br/>
 <a href="https://salvatore-dininni.com/" >https://salvatore-dininni.com</a> 
