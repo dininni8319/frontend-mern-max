@@ -10,9 +10,12 @@ import { AuthContext } from '../../context/auth-context';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import ImageUpload from '../../shared/components/FormElements/ImageUpload';
+import { ConfigContext } from '../../context/config-context';
 
 const NewPlace = () => {
-  const { userId, token } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
+  const { api_url } = useContext(ConfigContext);
+
   const history = useHistory();
   const {
     loading,
@@ -50,10 +53,8 @@ const NewPlace = () => {
       formData.append("description", formState.inputs.description.value);
       formData.append("address", formState.inputs.address.value);
       formData.append("image", formState.inputs.image.value);
-      formData.append("creator", userId);
-
       await sendRequest(
-        "http://localhost:4000/api/places",
+        `${api_url.backend}/places`,
         "POST",
         formData,
         { Authorization: "Bearer " + token }

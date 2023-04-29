@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './UserItem.css';
 import Avatar from '../../shared/components/UIElements/Avatar';
 import { Link } from 'react-router-dom';
 import Card from '../../shared/components/UIElements/Card';
+import { ConfigContext } from "../../context/config-context";
 
 const UserItem = (props) => {
+
+  const { api_url } = useContext(ConfigContext);
+  
   return (
     <li className='user-item'>
       <div className='user-item__content'>

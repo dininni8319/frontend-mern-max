@@ -5,6 +5,7 @@ import Button from '../../shared/components/FormElements/Button';
 import Modal from '../../shared/components/UIElements/Modal';
 import Map from '../../shared/components/UIElements/Map';
 import { AuthContext } from '../../context/auth-context';
+import { ConfigContext } from '../../context/config-context';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
@@ -13,6 +14,7 @@ const PlaceItem = props => {
   const [showMap, setShowMap ] = useState(false);
   const [ showConfirmModal, setShowConfirmModal ] = useState(false);
   const { userId, token } = useContext(AuthContext);
+  const { api_url } = useContext(ConfigContext);
   
   const {
     loading,
@@ -37,7 +39,7 @@ const PlaceItem = props => {
 
     try {
       await sendRequest(
-        `http://localhost:4000/api/places/${props.id}`,
+        `${api_url.backend}/places/${props.id}`,
         "DELETE",
         null,
         { 

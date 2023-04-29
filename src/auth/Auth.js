@@ -14,11 +14,12 @@ import ErrorModal from '../shared/components/UIElements/ErrorModal';
 import { AuthContext } from '../context/auth-context';
 import { useHttpClient } from '../shared/hooks/http-hook';
 import ImageUpload from '../shared/components/FormElements/ImageUpload';
+import { ConfigContext } from "../context/config-context";
 
 const Auth = () => {
   const [ isLoginMode, setIsLoginMode ] = useState(true);
   const { login } = useContext(AuthContext);
-
+  const { api_url } = useContext(ConfigContext);
   const {
     loading,
     error, 
@@ -42,7 +43,7 @@ const Auth = () => {
     
     if (isLoginMode) {
       try {
-        const response = await sendRequest("http://localhost:4000/api/user/signin", "POST",
+        const response = await sendRequest(`${api_url.backend}/user/signin`, "POST",
           JSON.stringify({
             email: formState.inputs.email.value,
             password: formState.inputs.password.value
@@ -68,7 +69,7 @@ const Auth = () => {
         formData.append("name", formState.inputs.name.value);
         formData.append("password", formState.inputs.password.value);
         formData.append("image", formState.inputs.image.value);
-        const response = await sendRequest("http://localhost:4000/api/user/signup", 
+        const response = await sendRequest(`${api_url.backend}/user/signup`, 
           "POST",
           formData,
         )

@@ -10,6 +10,7 @@ import Card from '../../shared/components/UIElements/Card';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal'
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner'
 import { AuthContext } from '../../context/auth-context';
+import { ConfigContext } from '../../context/config-context';
 
 import './PlaceForm.css';
 
@@ -18,6 +19,7 @@ const UpdatePlace = () => {
   const history = useHistory();
   const [ loadedPlace, setLoadedPlace ] = useState(null);
   const { userId, token } = useContext(AuthContext);
+  const { api_url } = useContext(ConfigContext);
 
   const {
     loading,
@@ -41,7 +43,7 @@ const UpdatePlace = () => {
     const fetchPlace = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:4000/api/places/${placeId}`
+          `${api_url.backend}/places/${placeId}`
         );
             setLoadedPlace(responseData.place);
             setFormData({
@@ -65,7 +67,7 @@ const UpdatePlace = () => {
 
     try {
       await sendRequest(
-        `http://localhost:4000/api/places/${placeId}`,
+        `${api_url.backend}/places/${placeId}`,
         "PATCH",
         JSON.stringify({
           title: formState.inputs.title.value,

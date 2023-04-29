@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import UserList from '../components/UsersList';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { useHttpClient } from '../../shared/hooks/http-hook';
+import { ConfigContext } from "../../context/config-context";
 
 const Users = () => {
   const [ users, setUsers ] = useState([]);
-  
+  const { api_url } = useContext(ConfigContext);
   const {
     loading,
     error,
@@ -18,7 +19,7 @@ const Users = () => {
     const fetchUsersList = async () => {
       try {
         const response = await sendRequest(
-          'http://localhost:4000/api/user/'
+          `${api_url.backend}/user/`
         );
 
         setUsers([...response]);
