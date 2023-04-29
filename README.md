@@ -16,6 +16,9 @@
 <br/>
 <h2>Full-Stack Developer ___ <span>Salvatore Dininni</span></h2>
 
+<ul><strong>Commands</strong>
+ <li>npm run build</li>
+</ul>
 <h4>Something about Me<h4>
 <p>A Highly Motivated Individual, open to new challenges and quickly learns new technologies. Self-driven, dedicated, and hard-working. Passionate about Web Development, Web Design, and Web Technologies.</p>
 <br/>
