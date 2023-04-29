@@ -40,7 +40,6 @@ const Auth = () => {
   const loginSubmitHandler = async event => {
     event.preventDefault();
     
-    console.log(formState.inputs, 'test');
     if (isLoginMode) {
       try {
         const response = await sendRequest("http://localhost:4000/api/user/signin", "POST",
@@ -52,8 +51,12 @@ const Auth = () => {
             "Content-Type": "application/json"
           }
         );
-        
-        login(response?.user.id);
+        login(
+          response?.id, 
+          response?.token,
+          response?.email, 
+          response?.user
+        );
       } catch (err) {
       }
     } else {
@@ -65,11 +68,17 @@ const Auth = () => {
         formData.append("name", formState.inputs.name.value);
         formData.append("password", formState.inputs.password.value);
         formData.append("image", formState.inputs.image.value);
-        const responseData = await sendRequest("http://localhost:4000/api/user/signup", 
+        const response = await sendRequest("http://localhost:4000/api/user/signup", 
           "POST",
           formData,
         )
-        login(responseData.user.id);
+        login(
+          response?.id, 
+          response?.token,
+          response?.email, 
+          response?.user
+        );
+        
       } catch (err) {
       }
     }
@@ -119,7 +128,14 @@ const Auth = () => {
                 errorText= "Please enter a name."
             />
           )}
-          {!isLoginMode && <ImageUpload center id="image" onInput={inputHandler} />}
+          {!isLoginMode && ( 
+            <ImageUpload 
+              center 
+              id="image" 
+              onInput={inputHandler}
+              errorText="Please provide a valid image"
+            />
+          )}
           
             <Input 
               id="email"

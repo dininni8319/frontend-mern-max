@@ -12,7 +12,7 @@ import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 const PlaceItem = props => {
   const [showMap, setShowMap ] = useState(false);
   const [ showConfirmModal, setShowConfirmModal ] = useState(false);
-  const { isLoggedIn, userId } = useContext(AuthContext);
+  const { userId, token } = useContext(AuthContext);
   
   const {
     loading,
@@ -38,7 +38,11 @@ const PlaceItem = props => {
     try {
       await sendRequest(
         `http://localhost:4000/api/places/${props.id}`,
-        "DELETE"
+        "DELETE",
+        null,
+        { 
+          Authorization: "Bearer " + token 
+        }
       );
       props.onDelete(props.id)
     } catch (error) {
@@ -84,7 +88,7 @@ const PlaceItem = props => {
           {loading && <LoadingSpinner asOverlay />}
           <div className="place-item__image">
             <img 
-              src={props.image}
+              src={`http://localhost:4000/${props.image}`}
               alt={props.title} 
             />
           </div>

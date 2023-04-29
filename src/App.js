@@ -9,22 +9,43 @@ import Auth from './auth/Auth';
 import { AuthContext } from './context/auth-context';
 
 const App = () => {
-  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
-  const [ userId, setUserId] = useState(false);
+  const [ userData, setUserData ] = useState({
+    token: "",
+    name: "",
+    email:"",
+    uid: ""
+  });
+  
+  const login = useCallback((
+    uid,
+    token,
+    email,
+    name
+    ) => {
 
-  const login = useCallback((uid) => {
-    setIsLoggedIn(true);
-    setUserId(uid);
+      setUserData(prevState => (
+      {...prevState, 
+        token: token,
+        email: email,
+        name: name,
+        uid:uid
+      }
+    ));
+
   },[]);
 
   const logout = useCallback(() => {
-    setIsLoggedIn(false);
-    setUserId(null);
+    setUserData({
+      token: "",
+      email: "",
+      name: "",
+      uid: ""
+    });
   }, []);
 
   let routes;
 
-  if (isLoggedIn) {
+  if (userData.token) {
     routes = (
       <Switch>
         <Route path='/' exact>
@@ -61,8 +82,10 @@ const App = () => {
   return (
     <AuthContext.Provider 
       value={{
-          isLoggedIn: isLoggedIn, 
-          userId: userId,
+          isLoggedIn: !!userData.token, 
+          token: userData.token,
+          userId: userData.uid,
+          name: userData.name,
           login:login, 
           logout:logout
       }
